@@ -1,0 +1,50 @@
+#当对默认的配置需要更改时，就需要在这里做配置
+#server.port=8888
+#带项目名称
+#server.servlet.context-path=/sp
+
+#配置一些公共的信息
+#image.server = http://localhost:8888
+
+
+
+#设置对输出参数的格式化
+#spring.jackson.date-format=yyyy-MM-dd
+#北京时间相对伦敦有八个小时时差所以使用GMT+8，这样才能正常显示日期
+#spring.jackson.time-zone=GMT+8
+
+#设置对输入参数的格式化，这样后台的接口就可以接收Date类型
+#Spring.mvc.date-format=yyyy-MM-dd
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd
+
+    time-zone: GMT+8
+  mvc:
+    date-format: yyyy-MM-dd
+  #决定到底采用哪个环境配置
+  profiles:
+    active: test
+  #mysql数据库相关配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/xj16888?characterEncoding=utf8&useSSL=false&serverTimezone = UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    #开发阶段设置不要缓存
+    #thymeleaf:
+      #cache: false
+#mybatis依赖
+mybatis:
+  type-aliases-package: classpath:com/xj/springbootnew/entity
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#另一种写法
+server:
+  port: 9999
+
+resource:
+  imageServer: http://localhost:9999
+
